@@ -1,5 +1,5 @@
 resource "lab" "experimental" {
-  title       = "Experimental"
+  title       = "Experimental - Updated"
   description = "This is an experimental example lab."
 
   settings {
@@ -15,7 +15,7 @@ resource "lab" "experimental" {
       title = "Introduction"
 
       page "first" {
-        title = "First"
+        title     = "First"
         reference = resource.page.first
       }
     }
