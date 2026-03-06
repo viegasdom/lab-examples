@@ -22,6 +22,10 @@ resource "lab" "container_service" {
         title     = "First"
         reference = resource.page.first
       }
+      page "second-page" {
+        title     = "Second page"
+        reference = resource.page.second-page
+      }
     }
   }
 }
