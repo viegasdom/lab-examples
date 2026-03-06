@@ -4,3 +4,6 @@ resource "service" "nginx" {
   port   = 80
   path   = "/"
 }
+resource "terminal" "terminal" {
+  target = resource.container.new-container-for-test-party
+}
