@@ -1,10 +1,14 @@
 resource "lab" "container_service" {
   title       = "Updated Container Service"
-  description = "Updated description for sync-to-remote test."
+  description = "Updated description for sync-to-remote test. My version is way better than bruno's "
 
   settings {
     idle {
-      enabled = false
+      enabled      = false
+      show_warning = false
+    }
+    timelimit {
+      duration = "20m"
     }
   }
 
