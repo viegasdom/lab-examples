@@ -6,6 +6,10 @@ resource "lab" "terraform_destroy" {
     idle {
       enabled = false
     }
+
+    timelimit {
+      duration = "15m"
+    }
   }
 
   layout = resource.layout.terraform_destroy
