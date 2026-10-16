@@ -14,12 +14,26 @@ resource "container" "shell" {
   }
 }
 
-// The subject of the test. Its providers need no credentials and no cloud
-// account, so what the lab proves is only whether destroy runs: terraform's own
-// output is streamed to the lab log, so "Destroy complete!" after the session
-// ends is the signal.
-resource "terraform" "marker" {
-  source = "files/terraform"
+// Two arms of the same test. They do identical work and differ only in whether
+// they declare variables, because the sdk writes terraform.tfvars only when
+// they are present and terraformDestroy stats that file before running.
+//
+// Read the session log at teardown. Both arms log "Destroy Terraform"; only an
+// arm that actually runs also logs "Running terraform destroy".
+resource "terraform" "no_vars" {
+  source = "files/terraform-novars"
+
+  network {
+    id = resource.network.main.meta.id
+  }
+}
+
+resource "terraform" "with_vars" {
+  source = "files/terraform-withvars"
+
+  variables = {
+    marker_suffix = "withvars"
+  }
 
   network {
     id = resource.network.main.meta.id
